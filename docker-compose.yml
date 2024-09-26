@@ -1,0 +1,44 @@
+version: '3'
+services:
+  server:
+    container_name: server
+    image: 'redash/redash:latest'
+    command: server
+    depends_on:
+      - postgres
+      - redis
+    env_file: .env
+    ports:
+      - "5000:5000"
+    environment:
+      REDASH_WEB_WORKERS: 4
+    restart: always
+  worker:
+    image: redash/redash:latest
+    command: scheduler
+    env_file: ./.env
+    environment:
+      QUEUES: "queries,scheduled_queries,celery"
+      WORKERS_COUNT: 2
+    restart: always
+  redis:
+    image: redis:latest
+    restart: always
+  postgres:
+    container_name: postgres
+    image: postgres:16-alpine
+    volumes:
+      - ./docker/postgres/mount:/var/lib/postgresql/data
+    restart: always
+    env_file: .env
+  clickhouse:
+    container_name: clickhouse
+    image: yandex/clickhouse-server
+    ports:
+      - "8123:8123"
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - ./docker/clickhouse/mount:/var/lib/clickhouse
+      - ./docker/clickhouse/users.xml:/etc/clickhouse-server/users.xml
