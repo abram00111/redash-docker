@@ -56,7 +56,7 @@
    
 9) Даем права пользователю к БД. username из пункта 7, dbName из пункта 8
    ```
-   GRANT SELECT(*) ON dbName.* TO username
+   GRANT SELECT ON dbName.* TO username
    ```
    более подробно о правах можно прочитать тут https://clickhouse.com/docs/ru/sql-reference/statements/grant
 

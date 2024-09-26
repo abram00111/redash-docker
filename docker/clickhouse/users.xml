@@ -28,7 +28,7 @@
     <users>
         <!-- If user name was not specified, 'default' user is used. -->
         <default>
-<!--            <access_management>1</access_management>-->
+            <access_management>1</access_management>
             <!-- Password could be specified in plaintext or in SHA256 (in hex format).
 
                  If you want to specify password in plaintext (not recommended), place it in 'password' element.
@@ -42,7 +42,7 @@
                  Execute: PASSWORD=$(base64 < /dev/urandom | head -c8); echo "$PASSWORD"; echo -n "$PASSWORD" | sha256sum | tr -d '-'
                  In first line will be password and in second - corresponding SHA256.
             -->
-            <password_sha256_hex>8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918</password_sha256_hex>
+            <password_sha256_hex>25f43b1486ad95a1398e3eeb3d83bc4010015fcc9bedb35b432e00298d5021f7</password_sha256_hex>
 
             <!-- List of networks with open access.
 

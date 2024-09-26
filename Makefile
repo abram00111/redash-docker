@@ -29,7 +29,7 @@ clickhouse:
 	docker exec -it clickhouse /bin/sh
 
 generate-password:
-	echo  "$(password)" | sha256sum | tr -d '-'
+	echo -n $(password) | sha256sum | tr -d '-'
 
 clickhouse-restart:
 	$(compose) down clickhouse
